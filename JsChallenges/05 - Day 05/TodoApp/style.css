@@ -12,6 +12,7 @@ body{
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
 }
 h1{
     font-size: 28px;
@@ -24,28 +25,71 @@ input[type="text"]{
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-bottom: 15px;
 }
 
-ul{
-    list-style:none;
+
+
+/* Style for the task list container */
+#taskList {
+    list-style: none;
     padding: 0;
-}
-
-ul li{
+  }
+  
+  /* Style for each task container (div) */
+  #taskList div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+  }
+  
+  /* Style for the task text (div) */
+  #taskList .task-text {
+    flex-grow: 1; /* Allow task text to grow and fill available space */
+  }
+  
+  /* Style for the delete button (button) */
+  #taskList .delete-button {
+    margin-left: 10px; /* Add spacing to the left of the delete button */
+    cursor: pointer; /* Change cursor to pointer on hover for better UX */
+  }
+  
 
-}
+
+
+
 
 
 .delete-button {
+    background-color: #b9250b;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+
+.completed {
+    text-decoration: line-through;
+}
+
+
+/* fitlers  style */
+
+
+
+#filterAll, #filterActive, #filterCompleted{
     background-color: #ff6347;
     color: #fff;
     border: none;
-    padding: 5px 10px;
+    padding: 10px;
     cursor: pointer;
     border-radius: 3px;
+}
+
+#filterActive{
+    background-color: green !important;
 }
