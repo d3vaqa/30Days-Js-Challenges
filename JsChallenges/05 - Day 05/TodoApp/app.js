@@ -6,8 +6,63 @@ const taskList = document.getElementById('taskList');
 const filterAllButton = document.getElementById('filterAll');
 const filterActiveButton = document.getElementById('filterActive');
 const filterCompletedButton = document.getElementById('filterCompleted');
+const clearCompletedButton = document.getElementById('clearCompleted');
+
+
+const progressFill = document.querySelector('.progress-fill'); 
+const progressText = document.querySelector('.progress-text');
+
 
 let currentFilter = 'all'; // Initialize current filter
+
+
+
+// Function to update the task count
+function updateTaskCount() {
+  const activeTasks = taskList.querySelectorAll('li:not(.completed)').length;
+  document.getElementById('countValue').textContent = activeTasks;
+}
+
+
+
+
+
+
+// Function to update the task count and progress bar
+function updateTaskCountAndProgressBar() {
+  const tasks = taskList.querySelectorAll('li');
+  const completedTasks = taskList.querySelectorAll('li.completed');
+  const progressBar = document.getElementById('progressBar');
+  const progressFill = document.querySelector('.progress-fill'); // Select the progress fill element
+  const progressText = document.querySelector('.progress-text'); // Select the progress text element
+
+  // Calculate the progress percentage based on completed tasks
+  const progressPercentage = (completedTasks.length / tasks.length) * 100;
+
+  // Update the task count
+  document.getElementById('countValue').textContent = tasks.length - completedTasks.length;
+
+  // Update the progress fill width with animation
+  progressFill.style.width = progressPercentage + '%';
+
+  // Update the progress text
+  progressText.textContent = progressPercentage.toFixed(0) + '%'; // Display the percentage with 0 decimal places
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -44,6 +99,15 @@ function addTask() {
       saveTasksToLocalStorage(); // Update local storage after marking as complete
     });
 
+      // Update task count
+      updateTaskCount();
+
+      // update Count Progress Bar
+
+      updateTaskCountAndProgressBar();
+
+      
+
     // Save task to local storage
     saveTasksToLocalStorage();
   }
@@ -59,6 +123,16 @@ taskInput.addEventListener('keydown', (event) => {
 // Function to mark task as complete
 function toggleTaskStatus(taskItem) {
   taskItem.classList.toggle('completed');
+
+
+  // Update task count
+  updateTaskCount();
+
+  updateTaskCountAndProgressBar();
+
+
+
+  saveTasksToLocalStorage();
 }
 
 // Function to save tasks to local storage
@@ -106,6 +180,10 @@ function loadTasksFromLocalStorage() {
 
 // Load tasks from local storage when the page loads
 loadTasksFromLocalStorage();
+updateTaskCount()
+
+// update Count Progress Bar
+updateTaskCountAndProgressBar();
 
 
 
@@ -150,3 +228,29 @@ function hideDeleteButtons() {
         button.style.display = 'none';
     });
 }
+
+
+
+
+
+
+
+// Function to clear completed tasks
+function clearCompletedTasks() {
+  const completedTasks = Array.from(taskList.querySelectorAll('.completed'));
+  completedTasks.forEach((completedTask) => {
+      const listContainer = completedTask.parentElement;
+      listContainer.remove(); // Remove the entire container (task + delete button)
+  });
+
+  // Update task count
+  updateTaskCount();
+
+  // update Count Progress Bar
+  updateTaskCountAndProgressBar();
+
+  saveTasksToLocalStorage();
+}
+
+// Add click event to the "Clear Completed" button
+clearCompletedButton.addEventListener('click', clearCompletedTasks);

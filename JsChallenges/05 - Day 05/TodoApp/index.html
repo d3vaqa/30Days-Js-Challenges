@@ -16,11 +16,22 @@
             <button id="filterAll">All</button>
             <button id="filterActive">Active</button>
             <button id="filterCompleted">Completed</button>
+            <button id="clearCompleted">Clear Completed</button>
+
         </div>
 
 
-        <ul id="taskList">
-        </ul>
+        <ul id="taskList"></ul>
+        <p id="taskCount">Tasks remaining: <span id="countValue">0</span></p> 
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill"></div>
+                <div class="progress-text">0%</div>
+            </div>
+        </div>
+
+        
     </div>
     
 

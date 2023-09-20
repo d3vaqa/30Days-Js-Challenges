@@ -81,7 +81,7 @@ input[type="text"]{
 
 
 
-#filterAll, #filterActive, #filterCompleted{
+#filterAll, #filterActive, #filterCompleted, #clearCompleted{
     background-color: #ff6347;
     color: #fff;
     border: none;
@@ -92,4 +92,61 @@ input[type="text"]{
 
 #filterActive{
     background-color: green !important;
+}
+#clearCompleted{
+    background-color: #b9250b;
+
+}
+
+
+/* Task counter styles */
+#taskCount {
+
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333; 
+  }
+
+  /* Style the count value */
+  #countValue {
+    color:  #b9250b;
+    font-size: 18px;
+    padding-left: 15px;
+  }
+
+
+ /* Style the progress container */
+.progress-container {
+    height: 20px;
+    background-color: #f2f2f2;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Style the progress bar */
+.progress-bar {
+    height: 100%;
+    background-color: #f2f2f2;
+    width: 100%;
+    position: relative;
+}
+
+/* Style the progress fill */
+.progress-fill {
+    height: 100%;
+    background-color: #007bff;
+    width: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color */
 }
