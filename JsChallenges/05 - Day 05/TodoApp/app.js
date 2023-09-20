@@ -90,7 +90,9 @@ function addTask() {
     // Add a click event to delete button
     deleteItem.addEventListener('click', () => {
       listContainer.remove();
+      updateTaskCount()
       saveTasksToLocalStorage(); // Update local storage after deleting
+
     });
 
     // Add a click event to task text to mark as complete

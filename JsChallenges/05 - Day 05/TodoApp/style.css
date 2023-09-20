@@ -32,8 +32,9 @@ input[type="text"]{
 
 /* Style for the task list container */
 #taskList {
-    list-style: none;
+    list-style: number;
     padding: 0;
+    padding-left: 15px;
   }
   
   /* Style for each task container (div) */
