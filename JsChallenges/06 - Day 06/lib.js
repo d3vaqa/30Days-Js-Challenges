@@ -36,3 +36,20 @@ const generateQuote = () =>{
 document.getElementById('newQuote').addEventListener('click', generateQuote)
 
 generateQuote()
+
+
+
+
+
+function createFuntion(){
+    function multiplyBy2(num){
+        return num*2
+    }
+
+    return multiplyBy2
+}
+
+
+
+const generatedFunc = createFuntion()
+const result = generatedFunc(2)
