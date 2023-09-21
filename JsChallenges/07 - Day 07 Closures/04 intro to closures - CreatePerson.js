@@ -25,4 +25,7 @@ function createPerson(name, age){
 const person1 = createPerson('Hiro', 26)
 console.log(person1.getName())
 console.log(person1.getAge())
-
+person1.celebrateBirthday()
+person1.changeName('Aqa')
+console.log(person1.getName())
+console.log(person1.getAge())
