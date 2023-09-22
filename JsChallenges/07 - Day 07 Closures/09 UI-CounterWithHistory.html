@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with History</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            text-align: center;
+        }
+        #count {
+            font-size: 24px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Counter with History</h1>
+        <div id="count">0</div>
+        <button onclick="increment()">Increment</button>
+        <button onclick="decrement()">Decrement</button>
+        <button onclick="undo()">Undo</button>
+        <button onclick="redo()">Redo</button>
+    </div>
+
+    <script>
+        // JavaScript code
+        const counter = createCounterWithHistory();
+        const countElement = document.getElementById('count');
+
+        function updateCount() {
+            countElement.textContent = counter.getCurrentCount();
+        }
+
+        function increment() {
+            counter.increment();
+            updateCount();
+        }
+
+        function decrement() {
+            counter.decrement();
+            updateCount();
+        }
+
+        function undo() {
+            counter.undo();
+            updateCount();
+        }
+
+        function redo() {
+            counter.redo();
+            updateCount();
+        }
+
+        // Define the createCounterWithHistory function
+        function createCounterWithHistory(){
+            let count = 0
+            const history = [count]
+            let currentIndex = 0
+
+            function getCurrentCount(){
+                return count
+            }
+
+            function increment(){
+                count++
+                history.splice(currentIndex + 1)
+                history.push(count)
+                currentIndex = history.length - 1
+            }
+
+            function decrement(){
+                count--
+                history.splice(currentIndex + 1)
+                history.push(count)
+                currentIndex = history.length - 1
+            }
+
+            function undo(){
+                if(currentIndex > 0){
+                    currentIndex--
+                    count = history[currentIndex]
+                }
+            }
+
+            function redo(){
+                if(currentIndex < history.length - 1){
+                    currentIndex++
+                    count = history[currentIndex]
+                }
+            }
+
+            return {
+                getCurrentCount,
+                increment,
+                decrement,
+                undo,
+                redo
+            };
+        }
+
+        updateCount(); // Initialize count on page load
+    </script>
+</body>
+</html>
